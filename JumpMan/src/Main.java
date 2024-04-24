@@ -3,11 +3,11 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Main extends JFrame{
-	private static final int WIDTH =1800;
-	private static final int HEIGHT=1600;
+	private static final int WIDTH =800;
+	private static final int HEIGHT=600;
 	
 	public Main () {
-		super("KeyListener Demo");
+		super("JumpMan");
 		setSize(WIDTH, HEIGHT);
 		Game play = new Game();
 		((Component) play).setFocusable(true);
@@ -15,7 +15,7 @@ public class Main extends JFrame{
 		Color RoyalBlue = new Color(22,13,193);
 		
 		
-		setBackground(RoyalBlue);
+		setBackground(Color.white);
 		
 		
 		getContentPane().add(play);

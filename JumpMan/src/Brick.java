@@ -10,12 +10,12 @@ public class Brick {
 		pic="";
 	}
 	
-	public Brick(int x1,int y1,int w1,int h1,String pic1) {
+	public Brick(int x1,int y1) {
 		x=x1;
 		y=y1;
-		w=w1;
-		h=h1;
-		pic=pic1;
+		w=50;
+		h=50;
+		pic="t.png";
 	}
 
 	public int getX() {

@@ -29,7 +29,7 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	            temp.add(new Brick(x, y));
 	            x += 50; // Increase horizontal spacing
 	        }
-	        x+=184;
+	        x+=186;
 	    }
 	      
 	    }
@@ -41,7 +41,7 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		            temp.add(new Brick(x, y));
 		            x += 50; // Increase horizontal spacing
 		        }
-		        x+=284;
+		        x+=286;
 		    }
 		      
 		    }

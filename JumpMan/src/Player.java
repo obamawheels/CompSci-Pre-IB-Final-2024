@@ -64,4 +64,14 @@ public class Player {
 		
 	}	
 	
+	public boolean collision(Brick b) {
+	    if (this.getX() + getW() >= b.getX() &&
+	        getX() <= b.getX() + b.getW() &&
+	        getY() + getH() >= b.getY() &&
+	        getY() <= b.getY() + b.getH()) {
+	        return true;
+	    }
+	    return false;
+	}
+	
 }

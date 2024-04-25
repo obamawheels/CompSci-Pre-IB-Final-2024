@@ -104,6 +104,12 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		}
 		g2d.drawImage(new ImageIcon(p.getPic()).getImage(),p.getX(), p.getY(), p.getW(), p.getH(),this);
 		detectOffscreen();
+	
+		if(collision()) {
+			
+		}
+		
+		collision();
 		
 		twoDgraph.drawImage(back, null, 0, 0);
 
@@ -155,8 +161,20 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		}	
 	if (p.getX()>756) {
 		p.setX(-15);
+		}
+	
+	
+	}	
+	
+	public boolean collision() {
+	    for (Brick brick : brickList) {
+	        if (p.collision(brick)) {
+	        	System.out.print("true");
+	            return true;
+	        }
+	    }
+	    return false;
 	}
-}	
 	
 	
 

@@ -11,12 +11,14 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	private BufferedImage back; 
 	private int key; 
 	private ArrayList <Brick> brickList;
+	private ArrayList <Brick> groundList;
 	
 	public Game() {
 		new Thread(this).start();	
 		this.addKeyListener(this);
 		key =-1; 
 		brickList= setBricks();
+		groundList= setGround();
 	
 	}
 	private ArrayList<Brick> setBricks() {
@@ -45,6 +47,17 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		    }
 		      
 		    }
+	    return temp;
+	}
+	private ArrayList<Brick> setGround() {
+	    ArrayList<Brick> temp = new ArrayList<Brick>();
+	    int y= 511;
+	    int x= -8;
+	    for (int b=0; b<16; b++) {
+	            temp.add(new Brick(x, y));
+	            x += 50; // Increase horizontal spacing
+	        }
+	      
 	    return temp;
 	}
 
@@ -82,6 +95,9 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		
 		//start here
 		for(Brick b: brickList) {
+			g2d.drawImage(new ImageIcon(b.getPic()).getImage(),b.getX(), b.getY(), b.getW(), b.getH(),this);
+		}
+		for(Brick b: groundList) {
 			g2d.drawImage(new ImageIcon(b.getPic()).getImage(),b.getX(), b.getY(), b.getW(), b.getH(),this);
 		}
 		

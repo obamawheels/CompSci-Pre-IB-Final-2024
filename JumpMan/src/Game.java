@@ -12,6 +12,7 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	private int key; 
 	private ArrayList <Brick> brickList;
 	private ArrayList <Brick> groundList;
+	private Player p;
 	
 	public Game() {
 		new Thread(this).start();	
@@ -19,6 +20,7 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		key =-1; 
 		brickList= setBricks();
 		groundList= setGround();
+		p= new Player(300,150);
 	
 	}
 	private ArrayList<Brick> setBricks() {
@@ -100,6 +102,8 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		for(Brick b: groundList) {
 			g2d.drawImage(new ImageIcon(b.getPic()).getImage(),b.getX(), b.getY(), b.getW(), b.getH(),this);
 		}
+		g2d.drawImage(new ImageIcon(p.getPic()).getImage(),p.getX(), p.getY(), p.getW(), p.getH(),this);
+		detectOffscreen();
 		
 		twoDgraph.drawImage(back, null, 0, 0);
 
@@ -119,8 +123,18 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	public void keyPressed(KeyEvent e) {
 		key= e.getKeyCode();
 		System.out.println(key);
-		
-		
+		if (key==37) {
+			p.setX(p.getX()-3);
+		}
+		if (key==39) {
+			p.setX(p.getX()+3);
+		}
+		if (key==38) {
+			p.setY(p.getY()-3);
+		}
+		if (key==40) {
+			p.setY(p.getY()+3);
+		}
 		
 	
 	}
@@ -135,6 +149,14 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		
 	}
 	
+	public void detectOffscreen() {
+		if (p.getX()<-15) {
+			p.setX(756);
+		}	
+	if (p.getX()>756) {
+		p.setX(-15);
+	}
+}	
 	
 	
 

@@ -182,7 +182,7 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 			p.setY(436);
 			isOnGround=true;
 		}
-		if (p.getY()>275) {
+		if ((p.getY()>275 && p.getY()<300) && (p.getX()<300 || p.getX()>4)) {
 			p.setY(275);
 			isOnGround=true;
 		}

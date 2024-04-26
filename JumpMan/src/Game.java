@@ -105,9 +105,9 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		}
 		g2d.drawImage(new ImageIcon(p.getPic()).getImage(),p.getX(), p.getY(), p.getW(), p.getH(),this);
 		detectOffscreen();
+		p.move();
 		collision();
 		gravity();
-		p.move();
 		
 		
 		twoDgraph.drawImage(back, null, 0, 0);
@@ -133,6 +133,10 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		}
 		if (key==39) {
 			p.setDx(1);
+		}
+		if(key==38 && isOnGround) {
+			isOnGround=false;
+			p.setpA(-6);
 		}
 	}
 
@@ -161,15 +165,17 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	public void gravity() {
 		if (isOnGround) {
 			p.setpA(0);
+			p.setpV(0);
 		}
 		else
-			p.setpA(2);
+			p.setpA(0.1);
+
 	}
 	
 	public void collision() {
-		if (p.getY()>381) {
+		if (p.getY()>436) {
+			p.setY(436);
 			isOnGround=true;
-			p.setY(381);
 		}
 	}
 

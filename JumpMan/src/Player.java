@@ -1,8 +1,9 @@
 
 public class Player {
 	
-	private int x,y,w,h,dx,pA,pV;
+	private int x,y,w,h,dx;
 	private String pic;
+	private double pA,pV;
 	
 	public Player() {
 		x=0;
@@ -19,26 +20,26 @@ public class Player {
 		x=x1;
 		y=y1;
 		w=50;
-		h=100;
+		h=75;
 		dx=0;
 		pA=0;
 		pV=0;
 		pic="t.png";
 	}
 
-	public int getpA() {
+	public double getpA() {
 		return pA;
 	}
 
-	public void setpA(int pA) {
+	public void setpA(double pA) {
 		this.pA = pA;
 	}
 
-	public int getpV() {
+	public double getpV() {
 		return pV;
 	}
 
-	public void setpV(int pV) {
+	public void setpV(double pV) {
 		this.pV = pV;
 	}
 

@@ -10,6 +10,7 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	
 	private BufferedImage back; 
 	private int key; 
+	private int bY;
 	private ArrayList <Brick> brickList;
 	private ArrayList <Brick> groundList;
 	private Player p;
@@ -106,10 +107,13 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		detectOffscreen();
 	
 		if(collision()) {
+			for (Brick b : brickList) {
+			p.setY(b.getH());
+			}
 			
 		}
-		
 		collision();
+		p.move();
 		
 		twoDgraph.drawImage(back, null, 0, 0);
 
@@ -130,16 +134,16 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		key= e.getKeyCode();
 		System.out.println(key);
 		if (key==37) {
-			p.setX(p.getX()-3);
+			p.setDx(-3);
 		}
 		if (key==39) {
-			p.setX(p.getX()+3);
+			p.setDx(3);
 		}
 		if (key==38) {
-			p.setY(p.getY()-3);
+			p.setDy(-3);
 		}
 		if (key==40) {
-			p.setY(p.getY()+3);
+			p.setDy(3);
 		}
 		
 	
@@ -149,7 +153,19 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		
+		key= e.getKeyCode();
+		if (key==37) {
+			p.setDx(0);
+		}
+		if (key==39) {
+			p.setDx(0);
+		}
+		if (key==38) {
+			p.setDy(0);
+		}
+		if (key==40) {
+			p.setDy(0);
+		}
 		
 		
 		
@@ -167,9 +183,14 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	}	
 	
 	public boolean collision() {
-	    for (Brick brick : brickList) {
-	        if (p.collision(brick)) {
-	        	System.out.print("true");
+	    for (Brick b : brickList) {
+	        if (p.collision(b)) {
+	        	p.setY(b.getY()-p.getH());
+	            return true;
+	        }
+	    }
+	    for (Brick g : groundList) {
+	        if (p.collision(g)) {
 	            return true;
 	        }
 	    }

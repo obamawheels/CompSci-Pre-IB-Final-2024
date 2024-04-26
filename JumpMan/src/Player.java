@@ -1,7 +1,7 @@
 
 public class Player {
 	
-	private int x,y,w,h;
+	private int x,y,w,h,dx,dy;
 	private String pic;
 	
 	public Player() {
@@ -9,12 +9,16 @@ public class Player {
 		y=0;
 		w=0;
 		h=0;
+		dx=0;
+		dy=0;
 		pic="";
 	}
 	
 	public Player(int x1,int y1) {
 		x=x1;
 		y=y1;
+		dx=0;
+		dy=0;
 		w=50;
 		h=100;
 		pic="t.png";
@@ -72,6 +76,27 @@ public class Player {
 	        return true;
 	    }
 	    return false;
+	}
+	
+	public void move(){
+		 x+=dx;
+		 y+=dy;
+		 }
+
+	public int getDx() {
+		return dx;
+	}
+
+	public void setDx(int dx) {
+		this.dx = dx;
+	}
+
+	public int getDy() {
+		return dy;
+	}
+
+	public void setDy(int dy) {
+		this.dy = dy;
 	}
 	
 }

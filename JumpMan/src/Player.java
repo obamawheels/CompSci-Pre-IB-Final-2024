@@ -1,7 +1,7 @@
 
 public class Player {
 	
-	private int x,y,w,h;
+	private int x,y,w,h,dx,pA,pV;
 	private String pic;
 	
 	public Player() {
@@ -9,6 +9,9 @@ public class Player {
 		y=0;
 		w=0;
 		h=0;
+		dx=0;
+		pA=0;
+		pV=0;
 		pic="";
 	}
 	
@@ -17,7 +20,26 @@ public class Player {
 		y=y1;
 		w=50;
 		h=100;
+		dx=0;
+		pA=0;
+		pV=0;
 		pic="t.png";
+	}
+
+	public int getpA() {
+		return pA;
+	}
+
+	public void setpA(int pA) {
+		this.pA = pA;
+	}
+
+	public int getpV() {
+		return pV;
+	}
+
+	public void setpV(int pV) {
+		this.pV = pV;
 	}
 
 	public int getX() {
@@ -60,18 +82,18 @@ public class Player {
 		this.pic = pic;
 	}
 	
-	public void jump() {
-		
-	}	
-	
-	public boolean collision(Brick b) {
-	    if (this.getX() + getW() >= b.getX() &&
-	        getX() <= b.getX() + b.getW() &&
-	        getY() + getH() >= b.getY() &&
-	        getY() <= b.getY() + b.getH()) {
-	        return true;
-	    }
-	    return false;
+	public int getDx() {
+		return dx;
 	}
+
+	public void setDx(int dx) {
+		this.dx = dx;
+	}
+
+	public void move() {
+		pV+=pA;
+		x+=dx;
+		y+=pV;
+	}	
 	
 }

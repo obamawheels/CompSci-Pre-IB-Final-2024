@@ -13,6 +13,7 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	private ArrayList <Brick> brickList;
 	private ArrayList <Brick> groundList;
 	private Player p;
+	private boolean isOnGround;
 	
 	public Game() {
 		new Thread(this).start();	
@@ -104,12 +105,10 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		}
 		g2d.drawImage(new ImageIcon(p.getPic()).getImage(),p.getX(), p.getY(), p.getW(), p.getH(),this);
 		detectOffscreen();
-	
-		if(collision()) {
-			
-		}
-		
 		collision();
+		gravity();
+		p.move();
+		
 		
 		twoDgraph.drawImage(back, null, 0, 0);
 
@@ -130,53 +129,49 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		key= e.getKeyCode();
 		System.out.println(key);
 		if (key==37) {
-			p.setX(p.getX()-3);
+			p.setDx(-1);
 		}
 		if (key==39) {
-			p.setX(p.getX()+3);
+			p.setDx(1);
 		}
-		if (key==38) {
-			p.setY(p.getY()-3);
-		}
-		if (key==40) {
-			p.setY(p.getY()+3);
-		}
-		
-	
 	}
 
 
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		
-		
-		
-		
+		key= e.getKeyCode();
+		if (key==37) {
+			p.setDx(0);
+		}
+		if (key==39) {
+			p.setDx(0);
+		}
 	}
 	
 	public void detectOffscreen() {
 		if (p.getX()<-15) {
 			p.setX(756);
 		}	
-	if (p.getX()>756) {
-		p.setX(-15);
+		if (p.getX()>756) {
+			p.setX(-15);
 		}
-	
-	
-	}	
-	
-	public boolean collision() {
-	    for (Brick brick : brickList) {
-	        if (p.collision(brick)) {
-	        	System.out.print("true");
-	            return true;
-	        }
-	    }
-	    return false;
 	}
 	
+	public void gravity() {
+		if (isOnGround) {
+			p.setpA(0);
+		}
+		else
+			p.setpA(2);
+	}
 	
+	public void collision() {
+		if (p.getY()>381) {
+			isOnGround=true;
+			p.setY(381);
+		}
+	}
 
 	
 }

@@ -15,7 +15,7 @@ public class Brick {
 		y=y1;
 		w=50;
 		h=50;
-		pic="t.png";
+		pic="ice.gif";
 	}
 
 	public int getX() {

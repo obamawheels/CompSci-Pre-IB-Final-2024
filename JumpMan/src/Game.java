@@ -55,7 +55,7 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	private ArrayList<Brick> setGround() {
 	    ArrayList<Brick> temp = new ArrayList<Brick>();
 	    int y= 511;
-	    int x= -8;
+	    int x= -4;
 	    for (int b=0; b<16; b++) {
 	            temp.add(new Brick(x, y));
 	            x += 50; // Increase horizontal spacing
@@ -107,7 +107,7 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		detectOffscreen();
 		p.move();
 		collision();
-		//gravity();
+		gravity();
 		
 		System.out.print(p.getY());
 		
@@ -182,11 +182,20 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 			p.setY(436);
 			isOnGround=true;
 		}
-		if ((p.getY()>275 && p.getY()<300) && (p.getX()<300 || p.getX()>4)) {
+		
+		if ((p.getY()>275 && p.getY()<300) && (p.getX()<300 || p.getX()>434)) {
 			p.setY(275);
 			isOnGround=true;
 		}
-	}
-
-	
+		
+		else if((p.getX()>300 && p.getX()<454) && p.getY()<434) {
+			isOnGround=false;
+		}
+		
+		
+		
+		
+		}
+		
+		
 }

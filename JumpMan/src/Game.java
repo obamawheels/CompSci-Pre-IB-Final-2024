@@ -107,10 +107,9 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		detectOffscreen();
 		p.move();
 		collision();
-		gravity();
+		gravity();	
 		
-		System.out.print(p.getY());
-		
+		System.out.println(p.getY()+p.getH());
 		
 		twoDgraph.drawImage(back, null, 0, 0);
 
@@ -140,9 +139,7 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 			isOnGround=false;
 			p.setpA(-6);
 		}
-		if (key==40) {
-			p.setpV(1);
-		}
+		
 	}
 
 
@@ -178,13 +175,13 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	}
 	
 	public void collision() {
-		if (p.getY()>406) {
-			p.setY(406);
+		if (p.getY()+p.getH()>511) {
 			isOnGround=true;
+			p.setY(511-p.getH());
 		}
 		
-		if ((p.getY()>245 && p.getY()<270) && (p.getX()<275 || p.getX()>439)) {
-			p.setY(245);
+		if ((p.getY()+p.getH()>350 && p.getpV()>0) && (p.getX()<275 || p.getX()>439)) {
+			p.setY(350-p.getH());
 			isOnGround=true;
 		}
 		

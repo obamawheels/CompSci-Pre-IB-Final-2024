@@ -19,8 +19,8 @@ public class Player {
 	public Player(int x1,int y1) {
 		x=x1;
 		y=y1;
-		w=75;
-		h=100;
+		w=72;
+		h=94;
 		dx=0;
 		pA=0;
 		pV=0;

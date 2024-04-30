@@ -15,7 +15,7 @@ public class Main extends JFrame{
 		Color RoyalBlue = new Color(22,13,193);
 		
 		
-		setBackground(Color.white);
+		setBackground(Color.blue);
 		
 		
 		getContentPane().add(play);

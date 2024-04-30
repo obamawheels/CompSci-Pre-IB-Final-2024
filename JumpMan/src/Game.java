@@ -178,17 +178,17 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	}
 	
 	public void collision() {
-		if (p.getY()>436) {
-			p.setY(436);
+		if (p.getY()>406) {
+			p.setY(406);
 			isOnGround=true;
 		}
 		
-		if ((p.getY()>275 && p.getY()<300) && (p.getX()<300 || p.getX()>434)) {
-			p.setY(275);
+		if ((p.getY()>245 && p.getY()<270) && (p.getX()<275 || p.getX()>439)) {
+			p.setY(245);
 			isOnGround=true;
 		}
 		
-		else if((p.getX()>300 && p.getX()<454) && p.getY()<434) {
+		else if((p.getX()>270 && p.getX()<449) && p.getY()<404) {
 			isOnGround=false;
 		}
 		

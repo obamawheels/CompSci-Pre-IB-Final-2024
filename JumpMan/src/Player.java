@@ -19,12 +19,12 @@ public class Player {
 	public Player(int x1,int y1) {
 		x=x1;
 		y=y1;
-		w=60;
-		h=70;
+		w=75;
+		h=100;
 		dx=0;
 		pA=0;
 		pV=0;
-		pic="t.png";
+		pic="Benji.gif";
 	}
 
 	public double getpA() {

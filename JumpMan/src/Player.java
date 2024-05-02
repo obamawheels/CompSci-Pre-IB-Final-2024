@@ -3,7 +3,7 @@ public class Player {
 	
 	private int x,y,w,h,dx;
 	private String pic;
-	private double pA,pV;
+	private double pYA,pYV;
 	
 	public Player() {
 		x=0;
@@ -11,8 +11,8 @@ public class Player {
 		w=0;
 		h=0;
 		dx=0;
-		pA=0;
-		pV=0;
+		pYA=0;
+		pYV=0;
 		pic="";
 	}
 	
@@ -22,25 +22,25 @@ public class Player {
 		w=72;
 		h=94;
 		dx=0;
-		pA=0;
-		pV=0;
+		pYA=0;
+		pYV=0;
 		pic="Benji.gif";
 	}
 
-	public double getpA() {
-		return pA;
+	public double getpYA() {
+		return pYA;
 	}
 
-	public void setpA(double pA) {
-		this.pA = pA;
+	public void setpYA(double pA) {
+		this.pYA = pA;
 	}
 
-	public double getpV() {
-		return pV;
+	public double getpYV() {
+		return pYV;
 	}
 
-	public void setpV(double pV) {
-		this.pV = pV;
+	public void setpYV(double pV) {
+		this.pYV = pV;
 	}
 
 	public int getX() {
@@ -92,9 +92,9 @@ public class Player {
 	}
 
 	public void move() {
-		pV+=pA;
+		pYV+=pYA;
+		y+=pYV;
 		x+=dx;
-		y+=pV;
 	}	
 	
 }

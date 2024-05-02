@@ -26,30 +26,20 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	}
 	private ArrayList<Brick> setBricks() {
 	    ArrayList<Brick> temp = new ArrayList<Brick>();
-	    for (int b=0; b<1; b++) {
 	    int y= 350;
-	    int x= 0;
-	    for (int i=0; i<2; i++) {
-	        for(int j = 0; j < 6; j++) {
-	            temp.add(new Brick(x, y));
-	            x += 50; // Increase horizontal spacing
-	        }
-	        x+=186;
-	    }
-	      
-	    }
-	    for (int k=0; k<1; k++) {
-		    int y= 150;
-		    int x= 0;
-		    for (int i=0; i<2; i++) {
-		        for(int h = 0; h < 5; h++) {
-		            temp.add(new Brick(x, y));
-		            x += 50; // Increase horizontal spacing
-		        }
-		        x+=286;
-		    }
-		      
-		    }
+    	int x= 0;
+	    for (int b=0; b<2; b++) {
+	    	for (int i=0; i<2; i++) {
+	    		for(int j = 0; j < 6; j++) {
+	    			temp.add(new Brick(x, y));
+	    			x += 50; // Increase horizontal spacing
+	    		}
+	    		x+=186;
+	    		}
+	    	y= 150;
+	    	x= 0;
+	    	}
+	    
 	    return temp;
 	}
 	private ArrayList<Brick> setGround() {
@@ -109,7 +99,7 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		collision();
 		gravity();	
 		
-		System.out.println(p.getY()+p.getH());
+		System.out.println();
 		
 		twoDgraph.drawImage(back, null, 0, 0);
 
@@ -137,7 +127,7 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		}
 		if(key==38 && isOnGround) {
 			isOnGround=false;
-			p.setpA(-6);
+			p.setpYA(-6);
 		}
 		
 	}
@@ -166,11 +156,11 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	
 	public void gravity() {
 		if (isOnGround) {
-			p.setpA(0);
-			p.setpV(0);
+			p.setpYA(0);
+			p.setpYV(0);
 		}
 		else
-			p.setpA(0.1);
+			p.setpYA(0.1);
 
 	}
 	
@@ -180,8 +170,12 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 			p.setY(511-p.getH());
 		}
 		
-		if ((p.getY()+p.getH()>350 && p.getpV()>0) && (p.getX()<275 || p.getX()>439)) {
+		if (((p.getY()+p.getH()>350 && p.getY()+p.getH()<400) && p.getpYV()>0) && (p.getX()<275 || p.getX()>439)) {
 			p.setY(350-p.getH());
+			isOnGround=true;
+		}
+		if (((p.getY()+p.getH()>150 && p.getY()+p.getH()<200) && p.getpYV()>0) && (p.getX()<275 || p.getX()>439)) {
+			p.setY(150-p.getH());
 			isOnGround=true;
 		}
 		

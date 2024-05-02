@@ -13,15 +13,19 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	private ArrayList <Brick> brickList;
 	private ArrayList <Brick> groundList;
 	private Player p;
+	private double stamina;
+	private boolean isRunning;
 	private boolean isOnGround;
 	
 	public Game() {
 		new Thread(this).start();	
 		this.addKeyListener(this);
-		key =-1; 
+		key= -1; 
 		brickList= setBricks();
 		groundList= setGround();
 		p= new Player(300,150);
+		stamina= 100;
+		isRunning= false;
 	
 	}
 	private ArrayList<Brick> setBricks() {
@@ -95,11 +99,11 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		}
 		g2d.drawImage(new ImageIcon(p.getPic()).getImage(),p.getX(), p.getY(), p.getW(), p.getH(),this);
 		detectOffscreen();
-		p.move();
+		move();
 		collision();
 		gravity();	
-		
-		System.out.println();
+
+		System.out.println(stamina);
 		
 		twoDgraph.drawImage(back, null, 0, 0);
 
@@ -119,15 +123,19 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	public void keyPressed(KeyEvent e) {
 		key= e.getKeyCode();
 		System.out.println(key);
-		if (key==37) {
+		if (key==37)
 			p.setDx(-1);
-		}
-		if (key==39) {
+
+		if (key==39)
 			p.setDx(1);
-		}
+
 		if(key==38 && isOnGround) {
 			isOnGround=false;
 			p.setpYA(-6);
+		}
+		
+		if (key==16 && stamina>0) {
+			isRunning=true;
 		}
 		
 	}
@@ -137,12 +145,14 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		key= e.getKeyCode();
-		if (key==37) {
+		if (key==37)
 			p.setDx(0);
-		}
-		if (key==39) {
+		
+		if (key==39)
 			p.setDx(0);
-		}
+		
+		if (key==16)
+			isRunning=false;
 	}
 	
 	public void detectOffscreen() {
@@ -161,7 +171,17 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		}
 		else
 			p.setpYA(0.1);
-
+	}
+	
+	public void move() {
+		if(isRunning)
+			stamina-=1;
+		if (stamina<0)
+			stamina=0;
+		if (stamina<100 && isRunning==false)
+			stamina+=1;
+			
+		p.move();
 	}
 	
 	public void collision() {

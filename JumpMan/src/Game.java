@@ -14,7 +14,6 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	private int enemyN;
 	private ArrayList <Brick> brickList;
 	private ArrayList <Brick> groundList;
-	private ArrayList <Enemy> enemyList;
 	private Player p;
 	private boolean isOnGround;
 	
@@ -24,7 +23,6 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		key= -1; 
 		brickList= setBricks();
 		groundList= setGround();
-		enemyList=setEnemies();
 		p= new Player(300,150);
 		wave=0;
 		enemyN=2;
@@ -48,17 +46,6 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	    
 	    return temp;
 	}
-	
-	private ArrayList<Enemy> setEnemies() {
-		ArrayList<Enemy> temp= new ArrayList<Enemy>();
-		int x=0;
-		int y=0;
-		for(int i = 0; i==enemyN; i++) {
-			temp.add(new Enemy(x,y));
-			y+=100;
-			}
-		return temp;
-	}	
 	private ArrayList<Brick> setGround() {
 	    ArrayList<Brick> temp = new ArrayList<Brick>();
 	    int y= 511;
@@ -109,9 +96,6 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		}
 		for(Brick b: groundList) {
 			g2d.drawImage(new ImageIcon(b.getPic()).getImage(),b.getX(), b.getY(), b.getW(), b.getH(),this);
-		}
-		for (Enemy e: enemyList) {
-			g2d.drawImage(new ImageIcon(e.getPic()).getImage(),e.getX(), e.getY(), e.getW(), e.getH(),this);
 		}
 		g2d.drawImage(new ImageIcon(p.getPic()).getImage(),p.getX(), p.getY(), p.getW(), p.getH(),this);
 		detectOffscreen();
